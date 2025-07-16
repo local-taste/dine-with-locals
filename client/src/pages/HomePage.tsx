@@ -40,7 +40,14 @@ export default function HomePage() {
           <Button variant="outline" onClick={() => navigate('/login')}>
             Login
           </Button>
-          <Button onClick={() => navigate('/signup')}>Sign up</Button>
+          <Button
+            onClick={() => {
+              console.log('Sign up clicked');
+              navigate('/signup');
+            }}
+          >
+            Sign up
+          </Button>
         </div>
       </nav>
 
