@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
+import { Input } from '@/components/ui/input';
 import {
   Popover,
   PopoverTrigger,
@@ -96,117 +97,126 @@ const FilterBar = ({
 
   return (
     <div className="pt-6 w-full">
-      <div className="flex flex-row gap-2 justify-center flex-wrap">
-        {/* Category */}
-        <div>
-          <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger>
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="dining">Dining</SelectItem>
-              <SelectItem value="event">Event</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        {/* City */}
-        <div>
-          <Select value={city} onValueChange={setCity}>
-            <SelectTrigger>
-              <SelectValue placeholder="City" />
-            </SelectTrigger>
-            <SelectContent className="max-h-60 overflow-y-auto">
-              {cities.map((city) => (
-                <SelectItem key={city} value={city}>
-                  {city}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        {/* Date ranges */}
-        <div>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="outline" className="text-gray-500">
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {dateRange?.from && dateRange?.to ? (
-                  `${format(dateRange.from, 'P')} - ${format(dateRange.to, 'P')}`
-                ) : (
-                  <span>Select Date Range</span>
-                )}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar
-                mode="range"
-                selected={dateRange}
-                onSelect={setDateRange}
-                numberOfMonths={1}
-              />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        {/* Dietary Restrictions */}
-        <div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="text-gray-500">
-                {dietaryCount > 0
-                  ? `${dietaryCount} Dietary Restriction${dietaryCount !== 1 ? 's' : ''}`
-                  : 'Dietary Restrictions'}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {dietaryOptions.map((option) => (
-                <DropdownMenuCheckboxItem
-                  key={option}
-                  checked={dietaryRestrictions?.includes(option) || false}
-                  onCheckedChange={() => handleDietaryRestrictionToggle(option)}
-                >
-                  {option}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        {/* Dine At */}
-        <div>
-          <Select value={dineAt} onValueChange={setDineAt}>
-            <SelectTrigger>
-              <SelectValue placeholder="Dine At" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="home">Home</SelectItem>
-              <SelectItem value="restaurant">Restaurant</SelectItem>
-              <SelectItem value="either">Either</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Number of Guests */}
-        <div>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Number of Guests" />
-            </SelectTrigger>
-            <SelectContent>
-              <div className="flex gap-2 m-2">
-                <Slider
-                  max={50}
-                  step={1}
-                  value={numberOfGuests}
-                  onValueChange={setNumberOfGuests}
+      <div className="flex flex-col items-center gap-1">
+        <Input
+          type="text"
+          placeholder="Search by keyword"
+          className="mb-4 w-full sm:w-3/4 md:w-1/2 lg:w-2/5"
+        />
+        <div className="flex flex-row gap-2 justify-center flex-wrap">
+          {/* Category */}
+          <div>
+            <Select value={category} onValueChange={setCategory}>
+              <SelectTrigger>
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="dining">Dining</SelectItem>
+                <SelectItem value="event">Event</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {/* City */}
+          <div>
+            <Select value={city} onValueChange={setCity}>
+              <SelectTrigger>
+                <SelectValue placeholder="City" />
+              </SelectTrigger>
+              <SelectContent className="max-h-60 overflow-y-auto">
+                {cities.map((city) => (
+                  <SelectItem key={city} value={city}>
+                    {city}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          {/* Date ranges */}
+          <div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" className="text-gray-500">
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {dateRange?.from && dateRange?.to ? (
+                    `${format(dateRange.from, 'P')} - ${format(dateRange.to, 'P')}`
+                  ) : (
+                    <span>Select Date Range</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="range"
+                  selected={dateRange}
+                  onSelect={setDateRange}
+                  numberOfMonths={1}
                 />
-                <span className="text-gray-500">{numberOfGuests}</span>
-              </div>
-            </SelectContent>
-          </Select>
-        </div>
+              </PopoverContent>
+            </Popover>
+          </div>
 
-        <Button onClick={onSubmit}>Search</Button>
+          {/* Dietary Restrictions */}
+          <div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="text-gray-500">
+                  {dietaryCount > 0
+                    ? `${dietaryCount} Dietary Restriction${dietaryCount !== 1 ? 's' : ''}`
+                    : 'Dietary Restrictions'}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {dietaryOptions.map((option) => (
+                  <DropdownMenuCheckboxItem
+                    key={option}
+                    checked={dietaryRestrictions?.includes(option) || false}
+                    onCheckedChange={() =>
+                      handleDietaryRestrictionToggle(option)
+                    }
+                  >
+                    {option}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Dine At */}
+          <div>
+            <Select value={dineAt} onValueChange={setDineAt}>
+              <SelectTrigger>
+                <SelectValue placeholder="Dine At" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="home">Home</SelectItem>
+                <SelectItem value="restaurant">Restaurant</SelectItem>
+                <SelectItem value="either">Either</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Number of Guests */}
+          <div>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Number of Guests" />
+              </SelectTrigger>
+              <SelectContent>
+                <div className="flex gap-2 m-2">
+                  <Slider
+                    max={50}
+                    step={1}
+                    value={numberOfGuests}
+                    onValueChange={setNumberOfGuests}
+                  />
+                  <span className="text-gray-500">{numberOfGuests}</span>
+                </div>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Button onClick={onSubmit}>Search</Button>
+        </div>
       </div>
     </div>
   );
