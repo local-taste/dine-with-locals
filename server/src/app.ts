@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 import { initializeSocket } from './config/socket.js';
+import { initializePinecone } from './config/pinecone.js';
 import connectDB from './config/mongo.js';
 import authRoutes from './routes/AuthRoutes.js';
 import locationRoutes from './routes/LocationRoutes.js';
@@ -48,8 +49,12 @@ app.set('io', io);
 // Connect to MongoDB
 connectDB();
 
+// Initialize Pinecone
+initializePinecone();
+
 //Parse user request -> Json format
 app.use(express.json());
+
 //Only receive request from some specific routes.
 app.use(
   cors({
