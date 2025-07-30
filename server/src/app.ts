@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 import { initializeSocket } from './config/socket.js';
-import { initializePinecone } from './config/pinecone.js';
+import client from './config/pinecone.js';
 import connectDB from './config/mongo.js';
 import authRoutes from './routes/AuthRoutes.js';
 import locationRoutes from './routes/LocationRoutes.js';
@@ -49,8 +49,8 @@ app.set('io', io);
 // Connect to MongoDB
 connectDB();
 
-// Initialize Pinecone
-initializePinecone();
+// Get Pinecone index
+const index = client.index('your-index-name');
 
 //Parse user request -> Json format
 app.use(express.json());
