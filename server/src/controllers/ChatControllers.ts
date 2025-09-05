@@ -13,12 +13,12 @@ interface AuthRequest extends Request {
 export const accessChat = asyncHandler(
   async (req: AuthRequest, res: Response) => {
     const { userId, listingId } = req.body; // id of the user to chat with
-    console.log(
-      'accessChat called with userId:',
-      userId,
-      'listingId:',
-      listingId,
-    );
+    // console.log(
+    //   'accessChat called with userId:',
+    //   userId,
+    //   'listingId:',
+    //   listingId,
+    // );
     const currentUser = req.user; // currently logged in user
     if (!userId) {
       console.log('userId not sent with request');

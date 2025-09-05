@@ -8,6 +8,7 @@ import locationRoutes from './routes/LocationRoutes.js';
 import filterRoutes from './routes/FilterRoutes.js';
 import requestRoutes from './routes/RequestRoutes.js';
 import listingRoutes from './routes/ListingRoutes.js';
+import callRoutes from './routes/CallRoutes.js';
 // Import all models first to ensure they're registered with mongoose
 import './models/User.js';
 import './models/Blog.js';
@@ -23,6 +24,9 @@ import uploadRoutes from './routes/uploadRoutes.js';
 import './models/Review.js';
 import './models/Chat.js';
 import './models/Message.js';
+
+// Stream API
+import { StreamClient } from '@stream-io/node-sdk';
 
 // Import routes after models are registered
 import blogRoutes from './routes/BlogRoutes.js';
@@ -58,6 +62,11 @@ app.use(
   }),
 );
 
+// Stream IO
+const client = new StreamClient('9yv5brqs6aw4', 'gtjeuexm38pv68bftgw6uu8jp5tyq8atan84atgfru92vyqvaughpqfu6ma8hf9b', {
+  timeout: 1000, 
+})
+
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/location', locationRoutes);
@@ -74,6 +83,7 @@ app.use('/api/matches', MatchRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/message', messageRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/call', callRoutes);
 
 // Start server
 const PORT = process.env.PORT || 3000;

@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import { SALT } from '../seeds/constants.js';
 import { OAuth2Client } from 'google-auth-library'; //Google's way of verifying token
+import client from '../config/stream.js';
+import { type UserRequest } from '@stream-io/node-sdk';
 dotenv.config();
 
 /**
@@ -90,7 +92,28 @@ export const loginUser = async (req: Request, res: Response) => {
   try {
     // Generate a token with userName and _id
     const token = createToken(returnUser._id.toString());
-    res.status(200).json({ token: token, message: 'Login Successful' });
+
+    // Stream: upsert user into Stream
+    const newStreamUser: UserRequest = {
+      id: returnUser._id.toString(),
+      name: returnUser.firstName + ' ' + returnUser.lastName,
+      image: returnUser.avatar,
+    };
+
+    await client.upsertUsers([newStreamUser]);
+
+    const streamToken = client.generateUserToken({
+      user_id: returnUser._id.toString(),
+      validity_in_seconds: 24 * 60 * 60,
+    });
+
+    console.log('Stream token generated:', streamToken);
+
+    res.status(200).json({
+      token: token,
+      streamToken: streamToken,
+      message: 'Login Successful',
+    });
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
