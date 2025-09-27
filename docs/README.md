@@ -118,7 +118,7 @@ Supports Google OAuth for quick sign-in.
 
 ```
 # Clone repo
-git clone https://github.com/yourusername/local-taste.git
+git clone https://github.com/local-taste/dine-with-locals.git
 
 # Install dependencies
 npm install
