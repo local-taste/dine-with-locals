@@ -1,4 +1,4 @@
-# Local Taste - one plate at a time
+# Local Taste - One Plate at a Time 🍽️🌎
 
 Looking for a more authentic way to experience a new place? Discover home-cooked meals, explore hidden neighborhood restaurants, join unique food events, and share unforgettable moments with hosts who know the city best. Local Taste helps travelers connect with people, stories, and places — all through the shared joy of cuisine, one plate at a time.
 
@@ -25,7 +25,7 @@ Special thanks to our project advisors:
 - APIs / External Integrations: Google Maps / Places, Google OAuth, Stripe Payments, Cloudinary, WebSocket
 - Testing: Jest, Vitest
 - Deployment: AWS EC2, Docker, AWS Amplify, AWS S3
-- CI/CD: Github Actions
+- CI/CD: GitHub Actions
 
 ### System Design Flow
 
@@ -57,14 +57,9 @@ Supports Google OAuth for quick sign-in.
 * Guests: View recommended upcoming food events.
 * Hosts: See requests from travelers wanting to join.
 * Track confirmed bookings in one place.
+* View more events per page, with dynamic filters to select relevant experiences
 
 ![Dashboard](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2d6cXF6YTRraWMxdmV1eWI5cGFwODhqdmYydGcycmhxYjFrd2tveSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xMVl5B3Jmlm2rMghl7/giphy.gif)
-
-**All events field**
-
-- View more events per page, with dynamic filters to select relevant experiences
-
-![View all with filters](filter.png)
 
 ### 3. Find nearby events and places with Google Maps!
 
@@ -73,17 +68,17 @@ Supports Google OAuth for quick sign-in.
 
 ![Discover Places](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmlqeGZ0NzFoMXhxc2Q2bmdwcmZwYTBvZTFtNGtzZHNoMnpzOXFwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LmHEwEQV5KfoKqUufI/giphy.gif)
 
-### 4. Book and checkout an experience
+### 4. Book and securely confirm payment for an experience
 
-- For guests: Confirm your interest in joining a local host on an event. Note that the decision depends on the host!
+- For guests: Confirm your interest in joining a local host at an event. Note that the decision depends on the host!
 
-- For experiences with a fee associated: checkout securely with payment supported by Stripe! Once the host approve your booking, payment will be authorized and sent to the host from Stripe.
+- For experiences with an associated fee, check out securely with payment supported by Stripe! Once the host approves your booking, payment will be authorized and sent to the host from Stripe.
 
 ![Confirm Booking](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnNpem5uZXppeGpmam1ieTRsYjZ2N2JtYmpmZjc5d3l3MDVxbWxpOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gPM3EusBFPdyguRXdl/giphy.gif)
 
 ### 5. [Host] Manage your Listed Experiences
 
-- View guests that indicated interest in your booking and approve/reject the requests.
+- View guests who indicated interest in your booking and approve/reject the requests.
 
 ![Manage Booking](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTBidHJzeG4zbXJqZWx1aTJ5emwzMHdvcHFheThlZnJtZmpwMWd5eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P6Rb0hDlieDktKc548/giphy.gif)
 
@@ -91,7 +86,7 @@ Supports Google OAuth for quick sign-in.
 
 - Contact the host about an experience via chat to ask questions!
 
-- For confirmed experience, a broadcast channel or group chat can be created to streamline communication.
+- For confirmed experience, the host can create a broadcast channel or group chat to streamline communication.
 
 ![Chat](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3VhdXhlZm5nbTZwdTdtamxjZ2t2ZnV1c3JmanFubnVpa3hod2VudSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BIMZGCnKoE0LFEspz4/giphy.gif)
 
@@ -99,21 +94,21 @@ Supports Google OAuth for quick sign-in.
 
 - Write, share, and view friends' posts about traveling and cuisine.
 
-- Link your post to a recent experience to spread and share with other people!
+- Link your post to a recent experience to spread and share with others!
 
-- Like and comment on other's post to express interest!
+- Like and comment on others' posts to express interest!
 
 ![Feed](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcnZ5bHY2c2g5bnY1OTd2bTBtbDZrdDRhZGxzZjgzNXEyM29pZGFndCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iBJAsRBLSKOAAdcqo1/giphy.gif)
 
 **Notifications**
 
-- Get real-time nofitications when people interacted with your post.
+- Get real-time notifications when people interact with your post.
 
 ![Notification](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGExaWdnYmE3MTQ4cnI3bGphN3FrZHd4cm9hemZ3YTYzemVoNG9nZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IU9g4KDAQ1pgUkCzu3/giphy.gif)
 
 ### 8. Manage and View Profiles
 
-- View other's profiles, including their basic informations, recent posts and reviews, and some fun statistics
+- View others' profiles, including their basic information, recent posts and reviews, and some fun statistics
 
 - Manage and edit your own profile, including profile and cover pictures
 
@@ -128,7 +123,14 @@ git clone https://github.com/yourusername/local-taste.git
 # Install dependencies
 npm install
 
-# Start development servers
+# Start client-side development server:
+cd client
+npm install
+npm run dev
+
+# Start server-side development:
+cd server
+npm install
 npm run dev
 ```
 
